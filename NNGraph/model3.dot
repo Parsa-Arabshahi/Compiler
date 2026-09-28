@@ -1,0 +1,24 @@
+digraph InceptionBlock {
+    rankdir=LR;
+
+    x [shape=oval, style=filled, fillcolor=lightgreen];
+
+    convA1 [label="convA1\nConv2d", shape=box, style=filled, fillcolor="orange"];
+    reluA [label="reluA\nReLU", shape=box, style=filled, fillcolor="lightgreen"];
+    convB1 [label="convB1\nConv2d", shape=box, style=filled, fillcolor="orange"];
+    convB2 [label="convB2\nConv2d", shape=box, style=filled, fillcolor="orange"];
+    reluB [label="reluB\nReLU", shape=box, style=filled, fillcolor="lightgreen"];
+    cat1 [label="cat1\nConcat", shape=box, style=filled, fillcolor="gold"];
+    bn1 [label="bn1\nBatchNorm2d", shape=box, style=filled, fillcolor="plum"];
+    out [label="out\nReLU", shape=box, style=filled, fillcolor="lightgreen", penwidth=2];
+
+    x -> convA1;
+    convA1 -> reluA;
+    x -> convB1;
+    convB1 -> convB2;
+    convB2 -> reluB;
+    reluA -> cat1;
+    reluB -> cat1;
+    cat1 -> bn1;
+    bn1 -> out;
+}

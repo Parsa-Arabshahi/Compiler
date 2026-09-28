@@ -1,0 +1,21 @@
+digraph MLP {
+    rankdir=LR;
+
+    x [shape=oval, style=filled, fillcolor=lightgreen];
+
+    fc1 [label="fc1\nLinear", shape=box, style=filled, fillcolor="lightblue"];
+    relu1 [label="relu1\nReLU", shape=box, style=filled, fillcolor="lightgreen"];
+    drop1 [label="drop1\nDropout", shape=box, style=filled, fillcolor="khaki"];
+    fc2 [label="fc2\nLinear", shape=box, style=filled, fillcolor="lightblue"];
+    relu2 [label="relu2\nReLU", shape=box, style=filled, fillcolor="lightgreen"];
+    fc3 [label="fc3\nLinear", shape=box, style=filled, fillcolor="lightblue"];
+    out [label="out\nSoftmax", shape=box, style=filled, fillcolor="lightgreen", penwidth=2];
+
+    x -> fc1;
+    fc1 -> relu1;
+    relu1 -> drop1;
+    drop1 -> fc2;
+    fc2 -> relu2;
+    relu2 -> fc3;
+    fc3 -> out;
+}

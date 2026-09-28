@@ -1,0 +1,27 @@
+digraph TransformerEncoder {
+    rankdir=LR;
+
+    x [shape=oval, style=filled, fillcolor=lightgreen];
+
+    attn [label="attn\nMultiHeadAttention", shape=box, style=filled, fillcolor="tomato"];
+    drop1 [label="drop1\nDropout", shape=box, style=filled, fillcolor="khaki"];
+    norm1 [label="norm1\nLayerNorm", shape=box, style=filled, fillcolor="plum"];
+    ff1 [label="ff1\nLinear", shape=box, style=filled, fillcolor="lightblue"];
+    gelu1 [label="gelu1\nGELU", shape=box, style=filled, fillcolor="lightgreen"];
+    drop2 [label="drop2\nDropout", shape=box, style=filled, fillcolor="khaki"];
+    ff2 [label="ff2\nLinear", shape=box, style=filled, fillcolor="lightblue"];
+    norm2 [label="norm2\nLayerNorm", shape=box, style=filled, fillcolor="plum"];
+    out [label="out\nFlatten", shape=box, style=filled, fillcolor="gray90", penwidth=2];
+
+    x -> attn;
+    attn -> drop1;
+    drop1 -> norm1;
+    x -> norm1 [label="residual_1"];
+    norm1 -> ff1;
+    ff1 -> gelu1;
+    gelu1 -> drop2;
+    drop2 -> ff2;
+    ff2 -> norm2;
+    norm1 -> norm2 [label="residual_2"];
+    norm2 -> out;
+}
